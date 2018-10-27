@@ -6,7 +6,7 @@ from urllib import request
 # 定義變數
 GITURL = "https://github.com/l10n-tw/zh_glossary/"
 GITRAWURL = "https://raw.githubusercontent.com/l10n-tw/zh_glossary/master/"
-VER = "v0.1.1-beta"
+VER = "v0.1.2-beta"
 
 usage = '''[正體中文在地化譯文資料庫]
 版本：{2}
@@ -39,6 +39,22 @@ usage = '''[正體中文在地化譯文資料庫]
      移除 [原文] 字彙。
      [引數] = "[原文]"
      範例：remove "pattern" -- 移除 pattern 的譯文
+     
+   - 更新類別 -
+   push: (需要 Git！)
+     推送字彙檔案至 Git 遠端。
+     [引數] = 無
+     
+     此功能需要有字彙資料庫的存取權限。
+     
+     如果你沒有此版本庫的存取權限，請改用以下兩個方式提交字彙檔案
+     (glossary.json)：
+       - Telegram 群組：https://t.me/l10n_tw
+       - Issue Tracker: {1}
+   
+   fetch:
+     從遠端抓取最新的字彙檔案。
+     [引數] = 無
     
 '''.format(sys.argv[0], GITURL+"issues", VER)
 
