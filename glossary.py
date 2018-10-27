@@ -6,7 +6,7 @@ from urllib import request
 # 定義變數
 GITURL = "https://github.com/l10n-tw/zh_glossary/"
 GITRAWURL = "https://raw.githubusercontent.com/l10n-tw/zh_glossary/master/"
-VER = "v0.1.0-devel"
+VER = "v0.1.1-devel"
 
 usage = '''[正體中文在地化譯文資料庫]
 版本：{2}
@@ -109,6 +109,7 @@ def remove(glos, orig):
 
 def push():
   '''透過 git 推送翻譯到 master 分支。需要 git!'''
+  print("開始推送程序。稍候可能需要輸入帳號與密碼。")
   if os.path.exists("GLOTMP"):
     shutil.rmtree("GLOTMP")
   os.system("git clone --depth 1 {} GLOTMP".format(GITURL)) # Clone GITURL 到 GLOTMP
@@ -123,17 +124,21 @@ def push():
   os.system('git push')  # 推送變更。此處需要使用者驗證
   os.chdir("..") # 工作目錄復位
   shutil.rmtree("GLOTMP") # 刪除已使用完畢的 GLOTMP
+  print("推送程序完成。")
   return
 
 def fetch():
   '''發出 HTTP 請求，來下載最新的 glossary.json 檔案'''
+  print("正在抓取最新的 glossary.json 檔案…", end="")
   theRequest = request.Request(GITRAWURL + "glossary.json")
   theResponse = request.urlopen(theRequest)
   dataRaw = theResponse.read()
-  with open("glossary.json", "w+", encoding="UTF-8") as f:
-    f.write(str(dataRaw, encoding="UTF-8"))
-    f.flush()
-  theResponse.close()
+  f = open("glossary.json", "w", encoding="UTF-8")
+  f.write(dataRaw.decode("UTF-8"))
+  f.flush()
+  f.close(); theResponse.close()
+  print("抓取成功。")
+  exit()
   return
 
 def main():
