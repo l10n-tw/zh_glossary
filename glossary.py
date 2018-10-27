@@ -4,8 +4,8 @@ import os, shutil, json, sys
 from urllib import request
 
 # 定義變數
-GITURL = "https://www.github.com/tw_translation/zh_glossary/"
-GITRAWURL = "https://raw.githubusercontent.com/tw_translation/zh_glossary/master/"
+GITURL = "https://github.com/l10n-tw/zh_glossary/"
+GITRAWURL = "https://raw.githubusercontent.com/l10n-tw/zh_glossary/master/"
 VER = "v0.1.0-devel"
 
 usage = '''[正體中文在地化譯文資料庫]
@@ -127,10 +127,10 @@ def push():
 
 def fetch():
   '''發出 HTTP 請求，來下載最新的 glossary.json 檔案'''
-  theRequest = request.Request("https://www.example.com")
+  theRequest = request.Request(GITRAWURL + "glossary.json")
   theResponse = request.urlopen(theRequest)
   dataRaw = theResponse.read()
-  with open("google.index.html", "w+", encoding="UTF-8") as f:
+  with open("glossary.json", "w+", encoding="UTF-8") as f:
     f.write(str(dataRaw, encoding="UTF-8"))
     f.flush()
   theResponse.close()
