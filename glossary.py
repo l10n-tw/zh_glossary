@@ -6,7 +6,7 @@ from urllib import request
 # 定義變數
 GITURL = "https://github.com/l10n-tw/zh_glossary/"
 GITRAWURL = "https://raw.githubusercontent.com/l10n-tw/zh_glossary/master/"
-VER = "v0.1.1-devel"
+VER = "v0.1.1-beta"
 
 usage = '''[正體中文在地化譯文資料庫]
 版本：{2}
